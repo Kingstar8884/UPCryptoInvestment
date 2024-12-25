@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+        }
+
+        .error-container {
+            text-align: center;
+            color: #333;
+        }
+
+        .error-code {
+            font-size: 6em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .error-message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .home-link {
+            text-decoration: none;
+            color: white;
+            background-color: green;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-link:hover {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div class="error-message">Oops! Sorry, You're not authenticated, the page you're looking for can't be found or you have been banned from using the page.</div>
+        <a href="/" class="home-link">Go Back to Home</a>
+    </div>
+
+</body>
+</html>

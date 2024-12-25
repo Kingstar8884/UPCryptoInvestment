@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+  <title>UP Crypto Inc.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="images/logo.ICO" type="image/x-icon">
+  <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div class="container">
+  
+
+
+    <p id="notifications">
+    </p>
+  
+    <header class="header">
+      <h1>UPCrypto Inc.</h1>
+      <button class="theme-toggle">🌙</button>
+    </header>
+
+    <div class="profile">
+        👋🏻 Welcome, <%= un %>!
+    </div>
+
+
+    <div class="promo-banner">
+      <p>🚀 Boost your mining speed with a 50% discount! Limited time only!</p>
+    </div>
+
+
+
+
+
+
+    <div class="balance-section">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd"><circle cx="16" cy="16" r="16" fill="#26a17b"/><path fill="#fff" d="M17.922 17.383v-.002c-.11.008-.677.042-1.942.042c-1.01 0-1.721-.03-1.971-.042v.003c-3.888-.171-6.79-.848-6.79-1.658s2.902-1.486 6.79-1.66v2.644c.254.018.982.061 1.988.061c1.207 0 1.812-.05 1.925-.06v-2.643c3.88.173 6.775.85 6.775 1.658c0 .81-2.895 1.485-6.775 1.657m0-3.59v-2.366h5.414V7.819H8.595v3.608h5.414v2.365c-4.4.202-7.709 1.074-7.709 2.118s3.309 1.915 7.709 2.118v7.582h3.913v-7.584c4.393-.202 7.694-1.073 7.694-2.116s-3.301-1.914-7.694-2.117"/></g></svg>
+            </span>
+      
+            <span>
+              <strong>
+                Balance:
+              </strong>
+              <span id="bal">
+                <%= balance.toLocaleString() %>
+              </span>
+              <span>
+                USDT
+              </span>
+            </span>
+
+    </div>
+
+
+
+    
+
+    <div class="stats-section">
+      <div class="stat-box">
+        <p>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="green" d="M21.92 6.62a1 1 0 0 0-.54-.54A1 1 0 0 0 21 6h-5a1 1 0 0 0 0 2h2.59L13 13.59l-3.29-3.3a1 1 0 0 0-1.42 0l-6 6a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0L9 12.41l3.29 3.3a1 1 0 0 0 1.42 0L20 9.41V12a1 1 0 0 0 2 0V7a1 1 0 0 0-.08-.38"/></svg>
+          
+          <span>
+            Deposits
+          </span>
+        </p>
+        <h2>$<%= deposits.toFixed(3) %></h2>
+      </div>
+      <div class="stat-box">
+        <p>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M21 21H3v-2h18zM8 10H4v7h4zm6-4h-4v11h4zm6-3h-4v14h4z"/></svg>
+
+          <span>
+            Earnings
+          </span>
+        </p>
+        <h2 id="ee2">$<%= earnings.toFixed(3) %></h2>
+      </div>
+      <div class="stat-box">
+        <p>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48"><g fill="#37474f"><path d="M23 5h2v36h-2z"/><path d="m25.817 32.772l1.414 1.414l-10.04 10.04l-1.414-1.414z"/><path d="m32.259 42.824l-1.414 1.414l-10.04-10.04l1.414-1.414z"/></g><path fill="#cfd8dc" d="M4 8h40v28H4z"/><g fill="#607d8b"><path d="M3 7h42v4H3zm0 28h42v2H3z"/><circle cx="31.5" cy="43.5" r="1.5"/><circle cx="16.5" cy="43.5" r="1.5"/></g><g fill="#c51162"><path d="m31.9 18.9l-5.9 6l-6-6l-8.1 8l2.2 2.2l5.9-6l6 6l8.1-8z"/><path d="m36 24l-7-7h7z"/></g></svg>
+          
+          <span>
+            Uptime
+          </span>
+        </p>
+        <h2>99.9%</h2>
+      </div>
+    </div>
+
+    <div class="mining-section">
+      <p class="mining-value">0 USDT</p>
+      <p class="mining-speed"> <span><img class="info" src="images/info.PNG" /></span><span id="ghs"><%= ghs %> GH/s ⚡</span></p>
+    </div>
+
+
+    <div class="progress-section">
+      
+      <p>Mining Progress</p>
+      
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
+      </div>
+      
+    </div>
+
+    <div class="not">
+    </div>
+
+
+    <div class="action-buttons">
+          
+      <button class="claim-btn" id="claim-btn" onclick="claimEarnings()"> 
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48"><g fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20"/><path d="M31 7v17z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M31 7v17"/><path d="m16.636 6.636l14.142 14.142z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m16.636 6.636l14.142 14.142"/><path d="M7 17h17z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M7 17h17"/><path d="M20.364 17.636L6.222 31.778z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M20.364 17.636L6.222 31.778"/><path d="M17 25v17z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M17 25v17"/><path d="m17.636 27.636l14.142 14.142z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m17.636 27.636l14.142 14.142"/><path d="M24 31h18z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24 31h18"/><path d="M42.364 16.636L28.222 30.778z" clip-rule="evenodd"/><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M42.364 16.636L28.222 30.778M24 31a7 7 0 1 0 0-14a7 7 0 0 0 0 14"/></g></svg>
+        </span>
+        <span>
+          Claim
+        </span>
+      </button>
+      
+      <button class="boost-btn" onclick="toggleDepositPopup()">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256"><path fill="currentColor" d="m213.85 125.46l-112 120a8 8 0 0 1-13.69-7l14.66-73.33l-57.63-21.64a8 8 0 0 1-3-13l112-120a8 8 0 0 1 13.69 7l-14.7 73.41l57.63 21.61a8 8 0 0 1 3 12.95Z"/></svg>
+        </span> 
+        <span>
+          Boost
+        </span>
+      </button>
+      
+      <button class="refer-btn" onclick="toggleReferPopup()">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 640 512"><path fill="currentColor" d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32S80 82.1 80 144s50.1 112 112 112m76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2M480 256c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96s43 96 96 96m48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4c24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48c0-61.9-50.1-112-112-112"/></svg>
+        </span>
+        <span>
+          Friends
+        </span>
+      </button>
+      
+      <button class="withdraw-btn" onclick="toggleWithdrawPopup()">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><g fill="currentColor" stroke-width="1.5"><path fill-rule="evenodd" d="M5 6.25A2.75 2.75 0 0 0 2.25 9v9A2.75 2.75 0 0 0 5 20.75h14A2.75 2.75 0 0 0 21.75 18V9A2.75 2.75 0 0 0 19 6.25zm11.5 6a1.25 1.25 0 1 0 0 2.5a1.25 1.25 0 0 0 0-2.5" clip-rule="evenodd"/><path d="M16.485 3.069A2 2 0 0 1 19 5H9z"/></g></svg>
+        </span>
+        <span>
+          Withdraw
+        </span>
+      </button>
+          
+    </div>
+
+
+    
+
+    <div id="withdraw-popup" class="popup hidden">
+      <form class="popup-content" id="with">
+        <h2>Withdraw Funds</h2>
+        <label for="wallet-address">Wallet Address</label>
+        <input type="text" id="wallet-address" placeholder="Enter Wallet Address">
+        <label for="withdraw-amount">Amount</label>
+        <input type="number" id="withdraw-amount" placeholder="Enter Amount">
+        <button class="popup-btn" type="submit">Withdraw</button>
+        <button class="popup-close" type="button" onclick="toggleWithdrawPopup()">Close</button>
+      </form>
+    </div>
+
+
+
+    <div id="deposit-popup" class="popup hidden">
+      <div class="popup-content">
+        <h2 style="text-decoration: underline;">Deposit Funds</h2>
+        <p style="margin-block: 30px;">
+           You can deposit to buy more GHS to make your mining speed much faster.<br><br>
+          You will get 1000 GHS for every 10 USDT you deposit.<br><br>
+          <strong>⚠️ Note:</strong> Minimum deposit is 10USDT, any amount less than this will be ignored.
+        </p>
+        
+
+        <label for="wallet-address" style="margin-bottom: 10px;">USDT (TRC20)</label>
+        <input style="font-style: monospace;" type="text" id="wallet-address" value="<%= address || 'Oops! An error occured' %>" onclick="copyIt('address')" readonly>
+        <button class="popup-close" onclick="toggleDepositPopup()">Close</button>
+      </div>
+    </div>
+
+
+
+    
+    <div id="refer-popup" class="popup hidden">
+      <div class="popup-content">
+        <h2>Refer & Earn</h2>
+        <p>Share your referral link to earn rewards:</p>
+        <div class="refer-box">
+          <input type="text" value="<%= bLink %>" readonly>
+          <button onclick="copyIt('link')">Copy</button>
+        </div>
+        <button class="popup-close" onclick="toggleReferPopup()">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    let lastTimeMined = '<%= last_mined_time || 0 %>';
+    const earningsPerHour = '<%= max_mining %>';
+    const address = '<%= address %>';
+  </script>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
